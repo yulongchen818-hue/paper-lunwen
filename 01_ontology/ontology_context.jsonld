@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "sb": "http://steel-bridge.org/ontology#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@comment": "Class and relation declarations of the lightweight schema. No OWL axioms, domain/range restrictions or SHACL shapes are declared; the domain and range given here are conventions checked after the fact by 05_graph_audit/audit_graph.py.",
+  "classes": [
+    "Project",
+    "GirderSegment",
+    "StructuralComponent",
+    "ComponentSystem",
+    "ConstructionProcess",
+    "ConstructionMethod",
+    "PushRound",
+    "Equipment",
+    "TemporaryStructure",
+    "Drawing",
+    "TechnicalSpecification",
+    "Quantity",
+    "Material",
+    "Stakeholder",
+    "SiteCondition",
+    "Schedule",
+    "KnowledgePoint",
+    "Discipline"
+  ],
+  "relations": [
+    {
+      "name": "partOfProject",
+      "domain": "Any",
+      "range": "Project"
+    },
+    {
+      "name": "depicts",
+      "domain": "Drawing",
+      "range": "StructuralComponent"
+    },
+    {
+      "name": "refersToDrawing",
+      "domain": "Any",
+      "range": "Drawing"
+    },
+    {
+      "name": "usesMaterial",
+      "domain": "StructuralComponent",
+      "range": "Material"
+    },
+    {
+      "name": "belongsTo",
+      "domain": "StructuralComponent",
+      "range": "ComponentSystem"
+    },
+    {
+      "name": "usesMethod",
+      "domain": "Any",
+      "range": [
+        "ConstructionMethod",
+        "ConstructionProcess"
+      ]
+    },
+    {
+      "name": "appliesTo",
+      "domain": "TechnicalSpecification",
+      "range": "Any"
+    },
+    {
+      "name": "involvesSegment",
+      "domain": "PushRound",
+      "range": "GirderSegment"
+    },
+    {
+      "name": "hasComponent",
+      "domain": "ComponentSystem",
+      "range": "StructuralComponent"
+    },
+    {
+      "name": "hasStep",
+      "domain": "ConstructionProcess",
+      "range": "ConstructionProcess"
+    },
+    {
+      "name": "launchOrder",
+      "domain": "PushRound",
+      "range": "PushRound"
+    },
+    {
+      "name": "relatedTo",
+      "domain": "Any",
+      "range": "Any",
+      "note": "untyped fallback"
+    },
+    {
+      "name": "landsOn",
+      "domain": "LaunchStep",
+      "range": "TemporaryStructure",
+      "since": "v1.2"
+    }
+  ]
+}

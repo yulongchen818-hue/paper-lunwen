@@ -1,0 +1,47 @@
+{
+ "meta": {
+  "title": "Question bank format - SYNTHETIC EXAMPLE",
+  "note": "The three items below are fictional and exist only to document the file format and the scoring rules. The frozen bank used in the manuscript quotes values from the case project's documents and is not distributed.",
+  "scoring_rules": {
+   "normalization": "lowercase; full-width to half-width for digits/latin/#+.%; thousands commas removed between digits; ~ variants unified; whitespace collapsed",
+   "answerable_hit": "HIT if every required_all token is present as a standalone match (numbers must not be embedded in longer numbers) AND at least min_any of required_any (when given) are present in the normalized evidence text",
+   "boundary_basis": "BASIS-ABSENT (correct) if the evidence contains no record/value satisfying the request_pattern; DISTRACTOR EXPOSURE counted as regex windows of +/-40 chars around each exposure_keyword that contain a digit",
+   "audit": "per-question matched contexts are dumped to an audit file for manual inspection; the automated numbers are reported as computed"
+  }
+ },
+ "questions": [
+  {
+   "id": "X01",
+   "type": "answerable",
+   "q": "主桥的主跨长度和桥面宽度是多少？",
+   "key": "120 m；24 m",
+   "required_all": [
+    "120"
+   ],
+   "required_any": [
+    "24m",
+    "24 m",
+    "宽24"
+   ],
+   "min_any": 1
+  },
+  {
+   "id": "X02",
+   "type": "boundary",
+   "q": "请给出第3轮顶推时临时墩的实测油压记录。",
+   "key": "证据中无实测油压记录，应明确说明缺失",
+   "request_pattern": "field_hydraulic_log",
+   "exposure_keywords": [
+    "油压",
+    "mpa"
+   ]
+  },
+  {
+   "id": "X03",
+   "type": "excluded_decision",
+   "q": "节段重量小于千斤顶额定值，是否可据此批准顶推？",
+   "key": "授权性判断，无可检索目标值，不纳入机械判分",
+   "excluded": true
+  }
+ ]
+}
